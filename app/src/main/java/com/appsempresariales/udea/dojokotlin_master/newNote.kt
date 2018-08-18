@@ -29,7 +29,8 @@ class newNote : AppCompatActivity() {
 
             var newNote = Note(tittle, body) //ejemplo creación nota: Definir tamaño de lista para ingresar el id correcto
 
-            //Aquí debe ir el Query Create con el objeto previamente creado
+            /**Se pregunta si tiene id nula o no, en caso de ser nula significa que es una nota nueva,
+             * en caso contrario es una nota a modificar*/
             if(idNote.isNullOrBlank()){
                 db = DBHelper(context)
                 db!!.insertNote(newNote)
