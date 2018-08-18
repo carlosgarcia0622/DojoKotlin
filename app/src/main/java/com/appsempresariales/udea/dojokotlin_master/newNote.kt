@@ -30,9 +30,12 @@ class newNote : AppCompatActivity() {
             var newNote = Note(tittle, body) //ejemplo creación nota: Definir tamaño de lista para ingresar el id correcto
 
             //Aquí debe ir el Query Create con el objeto previamente creado
-            db = DBHelper(context)
-            db!!.insertNote(newNote)
-
+            if(idNote.isNullOrBlank()){
+                db = DBHelper(context)
+                db!!.insertNote(newNote)
+            }else{
+                updateNote()
+            }
             val open = Intent(this,MainActivity::class.java) //Volver a la vista principal después de guardar
             startActivity(open)
         }
@@ -43,27 +46,29 @@ class newNote : AppCompatActivity() {
 
     }
 
-    //Por implementar
+    /**Metodo que recibe los valores de una nota existente y que los muestra para ver que se va a modificar*/
     private fun receivingValue() {
         val intent = intent
-        notesDTO = Notes_DTO()
-        notesDTO!!.setContext(context)
+        notesDTO = Notes_DTO()  /**Inicializo el objeto de la clase DTO*/
+        notesDTO!!.setContext(context) /**Importante: Setearle el contexto ya que lo necesita la BD*/
         var value = intent.getStringExtra("notaID")
         if(!(value === null)){
             idNote = value!!
             Toast.makeText(context,idNote,Toast.LENGTH_LONG)
-            var notes = notesDTO!!.getNote(idNote!!)
-    }
+            var notes = notesDTO!!.getNote(idNote!!) /**Incovo el metodo de notasDTO*/
+            titulo.setText(notes.getTitle())
+            texto.setText(notes.getBody())
+        }
     }
 
-    //Por implementar
+    /**Metodo que actualiza las notas en la vista y en la BD*/
     private fun updateNote(){
         val intent = intent
         val value = intent.getStringExtra("notaID")
         idNote = value.toString()
         val title = titulo!!.text.toString()
         val body = texto!!.text.toString()
-        notesDTO!!.setContext(context)
-        notesDTO!!.updateInBD(idNote!!,title, body)
+        notesDTO!!.setContext(context) /**Importante: Setearle el contexto ya que lo necesita la BD*/
+        notesDTO!!.updateInBD(idNote!!,title, body) /**Incovo el metodo de notasDTO*/
     }
 }

@@ -106,9 +106,4 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, Adapt
         var adapter = ArrayAdapter<Note>(this,android.R.layout.simple_list_item_1,notes)
         lvsLista!!.adapter= adapter as ListAdapter?
     }
-
-    private fun updateNote(){
-        /*val alert = AlertDialog.Builder(this)
-        alert.setTitle("¿Quiere editar el documento?")*/
-   }
 }
