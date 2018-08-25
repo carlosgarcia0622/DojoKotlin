@@ -4,7 +4,7 @@ import android.content.Context
 import com.appsempresariales.udea.models.Note
 
 //Por implementar
-class Notes_DTO {
+class NotesBL {
     private  var db: DBHelper ?= null
 
     /**Metodo para obtener la nota completa de la base de datos y retorna el objeto completo*/

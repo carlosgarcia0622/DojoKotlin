@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, Adapt
         //Aquí se deben crear los metodos click listener para el listView
 
        fab.setOnClickListener {  // Botón para agregar una nueva nota
-           val open = Intent(this,newNote::class.java)
+           val open = Intent(this,NewNote::class.java)
            startActivity(open) //Cambia a la actividad new_note.xml
         }
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, Adapt
         //Aqui se debe invocar la función que tome los datos
         var nota : Note = notes.get(p2)
         //Los pase por un intend, y actualiza la nota
-        val open = Intent(this,newNote::class.java)
+        val open = Intent(this,NewNote::class.java)
         open.putExtra("notaID",nota.getID().toString())
         startActivity(open)    }
 
